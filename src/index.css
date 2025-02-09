@@ -2,7 +2,7 @@
 
 @layer base {
     body {
-        @apply text-pink-300;
+        @apply text-pink-300 overflow-x-hidden;
     }
 }
 

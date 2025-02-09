@@ -6,8 +6,8 @@ import Paw from './Components/Paw'
 import { confetti } from "https://cdn.jsdelivr.net/npm/tsparticles-confetti/+esm";
 
 function App() {
-  const startDate = new Date('2024-12-14T00:00:00');
-  const [timeSince, setTimeSince] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const startDate = new Date('2023-12-14T00:00:00');
+  const [timeSince, setTimeSince] = useState({ years: 0, days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [durationText, setDurationText] = useState('');
   const [popupImage, setPopupImage] = useState(null);
   const [passcode, setPasscode] = useState('');
@@ -19,12 +19,13 @@ function App() {
       const now = new Date();
       const difference = now - startDate;
 
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
+      const days = Math.floor((difference / (1000 * 60 * 60 * 24)) % 365);
       const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((difference / 1000 / 60) % 60);
       const seconds = Math.floor((difference / 1000) % 60);
 
-      setTimeSince({ days, hours, minutes, seconds });
+      setTimeSince({ years, days, hours, minutes, seconds });
 
       const months = Math.floor(days / 30);
       const remainingDays = days % 30;
@@ -69,7 +70,8 @@ function App() {
   }, []);
 
   function getImage(id) {
-    return "./src/assets/image"+id+".jpeg"
+    // Change /assets/this number/images to other if you want to change images
+    return `https://raw.githubusercontent.com/ygisantos/Valentines/refs/heads/main/src/assets/0/image${id}.jpeg`
   }
 
   function handleImageClick(src) {
@@ -86,7 +88,7 @@ function App() {
     console.log("Input: " + number);
     console.log(newPasscode);
 
-    if (newPasscode === '121424') {
+    if (newPasscode === '121423') {
       runConfetti();
       setPasscodeStatus('Correct Passcode!!!!');
       setTimeout(() => {
@@ -199,22 +201,29 @@ function App() {
         <div className='flex justify-center items-center gap-4 font-bold md:text-2xl text-xl'>
           <div className='flex flex-col items-center'>
             <div> 
-            <span className='md:text-8xl text-6xl'>{String(timeSince.days).padStart(2, '0')}</span>
-            &nbsp;:
+              <span className='md:text-8xl text-6xl'>{String(timeSince.years).padStart(2, '0')}</span>
+              &nbsp;:
+            </div>
+            <span>Years</span>
+          </div>
+          <div className='flex flex-col items-center'>
+            <div> 
+              <span className='md:text-8xl text-6xl'>{String(timeSince.days).padStart(2, '0')}</span>
+              &nbsp;:
             </div>
             <span>Days</span>
           </div>
           <div className='flex flex-col items-center'>
             <div> 
-            <span className='md:text-8xl text-6xl'>{String(timeSince.hours).padStart(2, '0')}</span>
-            &nbsp;:
+              <span className='md:text-8xl text-6xl'>{String(timeSince.hours).padStart(2, '0')}</span>
+              &nbsp;:
             </div>
             <span>Hrs</span>
           </div>
           <div className='flex flex-col items-center'>
             <div> 
-            <span className='md:text-8xl text-6xl'>{String(timeSince.minutes).padStart(2, '0')}</span>
-            &nbsp;:
+              <span className='md:text-8xl text-6xl'>{String(timeSince.minutes).padStart(2, '0')}</span>
+              &nbsp;:
             </div>
             <span>Mins</span>
           </div>
@@ -225,7 +234,7 @@ function App() {
         </div>
 
         <div className='flex flex-row items-center justify-center mt-10'>
-          <button className='bg-pink-400 p-3 rounded-2xl text-white font-bold hover:bg-pink-500 transition-colors duration-300'>Puppy & Ducky</button>
+          <button className='bg-pink-400 p-3 px-14 rounded-2xl text-white font-bold hover:bg-pink-500 transition-colors duration-300'>Babe</button>
         </div>
         <div className='flex flex-row items-center justify-center gap-2 mt-10'>
           <Heart />
@@ -239,7 +248,7 @@ function App() {
 
       {/*Start 6 Pictures */}
       <div className='flex flex-col gap-20 animate-on-scroll'>
-        <button className='border-2 rounded-xl p-2 w-[100%] text-center items-center justify-center border-pink-500 flex flex-row gap-2 font-bold hover:bg-pink-500 hover:text-white transition-colors duration-300'>Puppy & Ducky <Heart/></button>
+        <button className='border-2 rounded-xl p-2 w-[100%] text-center items-center justify-center border-pink-500 flex flex-row gap-2 font-bold hover:bg-pink-500 hover:text-white transition-colors duration-300'> Babe <Heart/></button>
         <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-1'>
           <img className='h-[200px] w-full rounded-[4px] object-cover hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(0)} onClick={() => handleImageClick(getImage(0))}/>
           <img className='h-[200px] w-full rounded-[4px] object-cover hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(3)} onClick={() => handleImageClick(getImage(3))}/>
@@ -253,18 +262,24 @@ function App() {
       {/*End 6 Pictures */}
 
       {/* Start of message */}
-      <div className='flex flex-col gap-5 bg-pink-200 md:-mx-64 -mx-10 py-5 p-24 animate-on-scroll'>
-      <div className='flex flex-col gap-10 justify-center items-center '>
+      <div className='flex flex-col gap-5 py-5 p-24 animate-on-scroll'>
+      <div className='flex flex-col gap-10 justify-center items-center bg-pink-200 md:-mx-96 -mx-34 p-10 md:px-80'>
         <div className='flex flex-row justify-center gap-3'>
           <Heart />
           <Heart />
           <Heart />
         </div>
 
-        <div className='border-2 rounded-4xl p-5 border-pink-700 shadow-[0px_8px_0px_0px_#ad0074]'>
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+        {/*MESsAGE*/}
+        <div className='border-2 rounded-4xl p-5 border-pink-700 shadow-[0px_8px_0px_0px_#ad0074] text-justify'>
+          Hi to the most beautiful girl in the world,<br /><br />
+          Happy 2nd Valentine’s Day to us! I just want to take a moment to remind you how much you mean to me. You’ve truly been the best girlfriend I could ever ask for, and I’m so grateful to have you in my life. Honestly, I’m running out of words to describe how deeply I feel for you.<br /><br />
+          So much has changed in our relationship over time—how we think, how we act, and how we handle life together—but one thing I know for certain is that my love for you will never change. No matter what challenges we face, I will always choose you and fight for us. You are my person, and I’m so lucky to call you mine.<br /><br />
+          Will you be my Valentine again this year? I can’t wait to see you soon, baby. I love you more than words can say.<br /><br />
+          Always yours,<br />
+          Handsome Bf
         </div>
-        <button className='rounded-4xl bg-pink-500 w-fit p-2 px-5 text-white font-bold hover:bg-pink-600 transition-colors duration-300'>puppy & ducky</button>
+        <button className='rounded-4xl bg-pink-500 w-fit p-2 px-14 text-white font-bold hover:bg-pink-600 transition-colors duration-300'>Babe</button>
       </div>
       {/* End of message */}
 
