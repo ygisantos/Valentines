@@ -6,7 +6,7 @@ import Paw from './Components/Paw'
 import { confetti } from "https://cdn.jsdelivr.net/npm/tsparticles-confetti/+esm";
 
 function App() {
-  const startDate = new Date('2023-12-14T00:00:00');
+  const startDate = new Date('2022-10-17T00:00:00');
   const [timeSince, setTimeSince] = useState({ years: 0, days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [durationText, setDurationText] = useState('');
   const [popupImage, setPopupImage] = useState(null);
@@ -37,7 +37,7 @@ function App() {
 
   function getImage(id) {
     // Change /assets/this number/images to other if you want to change images
-    return `https://raw.githubusercontent.com/ygisantos/Valentines/refs/heads/main/src/assets/0/image${id}.jpeg`
+    return `https://raw.githubusercontent.com/ygisantos/Valentines/refs/heads/main/src/assets/1/image${id}.jpeg`
   }
 
   function handleImageClick(src) {
@@ -55,7 +55,7 @@ function App() {
     console.log("Input: " + number);
     console.log(newPasscode);
 
-    if (newPasscode === '121423') {
+    if (newPasscode === '101722') {
       setShowContent(true);
       runConfetti();
       setPasscodeStatus('Correct Passcode!!!! ❤️');
