@@ -4,9 +4,10 @@ import PasscodeBtn from './Components/PasscodeBtn'
 import Heart from './Components/Heart'
 import Paw from './Components/Paw'
 import { confetti } from "https://cdn.jsdelivr.net/npm/tsparticles-confetti/+esm";
+import Sorry from './sorry'
 
 function App() {
-  const startDate = new Date('2022-10-17T00:00:00');
+  const startDate = new Date('2022-10-17T17:00:00');
   const [timeSince, setTimeSince] = useState({ years: 0, days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [durationText, setDurationText] = useState('');
   const [popupImage, setPopupImage] = useState(null);
@@ -14,6 +15,7 @@ function App() {
   const [passcodeStatus, setPasscodeStatus] = useState('Enter your Passcode');
   const [isLoading, setIsLoading] = useState(false);
   const [showContent, setShowContent] = useState(false);
+  const [showSorry, setShowSorry] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -113,7 +115,7 @@ function App() {
             onClick={() => handleImageClick(getImage(2))}/>
           <img
             className={`h-[128px] w-auto object-cover md:h-[256px] rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer ${showContent ? '' : 'hidden'}`}
-            src={getImage(1)}
+            src={getImage(5)}
             onClick={() => handleImageClick(getImage(1))}/>
         </div>
         <div className='flex flex-col gap-2'>
@@ -202,7 +204,7 @@ function App() {
             </div>
 
             <div className='flex flex-row items-center justify-center mt-10'>
-              <button className='bg-pink-400 p-3 px-14 rounded-2xl text-white font-bold hover:bg-pink-500 transition-colors duration-300'>Babe</button>
+              <button className='bg-pink-400 p-3 px-14 rounded-2xl text-white font-bold hover:bg-pink-500 transition-colors duration-300'>Love</button>
             </div>
             <div className='flex flex-row items-center justify-center gap-2 mt-10 animate-bounce'>
               <Heart />
@@ -216,14 +218,20 @@ function App() {
 
           {/*Start 6 Pictures */}
           <div className='flex flex-col gap-20'>
-            <button className='border-2 rounded-xl p-2 w-[100%] text-center items-center justify-center border-pink-500 flex flex-row gap-2 font-bold hover:bg-pink-500 hover:text-white transition-colors duration-300'> Babe <Heart/></button>
+            <button className='border-2 rounded-xl p-2 w-[100%] text-center items-center justify-center border-pink-500 flex flex-row gap-2 font-bold hover:bg-pink-500 hover:text-white transition-colors duration-300'> Love <Heart/></button>
             <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-1'>
-              <img className='h-[200px] w-full rounded-[4px] object-cover hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(0)} onClick={() => handleImageClick(getImage(0))}/>
+            <img className='h-[200px] w-full rounded-[4px] object-cover hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(16)} onClick={() => handleImageClick(getImage(16))}/>
+              <img className='h-[200px] w-full rounded-[4px] object-cover hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(1)} onClick={() => handleImageClick(getImage(1))}/>
               <img className='h-[200px] w-full rounded-[4px] object-cover hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(3)} onClick={() => handleImageClick(getImage(3))}/>
               <img className='h-[200px] w-full rounded-[4px] object-cover hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(4)} onClick={() => handleImageClick(getImage(4))}/>
-              <img className='h-[200px] w-full rounded-[4px] object-cover hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(5)} onClick={() => handleImageClick(getImage(5))}/>
+              <img className='h-[200px] w-full rounded-[4px] object-cover hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(8)} onClick={() => handleImageClick(getImage(8))}/>
+              <img className='h-[200px] w-full rounded-[4px] object-cover hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(9)} onClick={() => handleImageClick(getImage(9))}/>
+              <img className='h-[200px] w-full rounded-[4px] object-cover hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(10)} onClick={() => handleImageClick(getImage(10))}/>
+              <img className='h-[200px] w-full rounded-[4px] object-cover hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(12)} onClick={() => handleImageClick(getImage(12))}/>
+              <img className='h-[200px] w-full rounded-[4px] object-cover hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(13)} onClick={() => handleImageClick(getImage(13))}/>
+              <img className='h-[200px] w-full rounded-[4px] object-cover hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(14)} onClick={() => handleImageClick(getImage(14))}/>
               <img className='h-[200px] w-full rounded-[4px] object-cover hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(6)} onClick={() => handleImageClick(getImage(6))}/>
-              <img className='h-[200px] w-full rounded-[4px] object-cover hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(1)} onClick={() => handleImageClick(getImage(1))}/>
+              <img className='h-[200px] w-full rounded-[4px] object-cover hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(15)} onClick={() => handleImageClick(getImage(15))}/>
             </div>
             <button className='rounded-xl p-2 w-[100%] text-center items-center justify-center bg-pink-500 flex flex-row gap-2 text-white font-bold hover:bg-pink-600 transition-colors duration-300'>{durationText} <Heart color='#ffffff'/></button>
           </div>
@@ -243,11 +251,11 @@ function App() {
               Hi to the most beautiful girl in the world,<br /><br />
               Happy 2nd Valentine’s Day to us! I just want to take a moment to remind you how much you mean to me. You’ve truly been the best girlfriend I could ever ask for, and I’m so grateful to have you in my life. Honestly, I’m running out of words to describe how deeply I feel for you.<br /><br />
               So much has changed in our relationship over time—how we think, how we act, and how we handle life together—but one thing I know for certain is that my love for you will never change. No matter what challenges we face, I will always choose you and fight for us. You are my person, and I’m so lucky to call you mine.<br /><br />
-              Will you be my Valentine again this year? I can’t wait to see you soon, baby. I love you more than words can say.<br /><br />
+              Will you be my Valentine again this year? I love you more than words can say.<br /><br />
               Always yours,<br />
               Handsome Bf
             </div>
-            <button className='rounded-4xl bg-pink-500 w-fit p-2 px-14 text-white font-bold hover:bg-pink-600 transition-colors duration-300'>Babe</button>
+            <button className='rounded-4xl bg-pink-500 w-fit p-2 px-14 text-white font-bold hover:bg-pink-600 transition-colors duration-300'>Love</button>
           </div>
           {/* End of message */}
 
@@ -255,14 +263,17 @@ function App() {
             <button className='border-2 border-pink-500 rounded-4xl p-2 px-6 hover:bg-pink-500 hover:text-white transition-colors duration-300'>
               I Love You So Much!
             </button>
-            <img className='m-5 max-h-[512px] object-cover rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(9)} onClick={() => handleImageClick(getImage(9))}/>
-            <div className='flex flex-row gap-3 animate-bounce'>
-              <Heart />
-              <Heart />
-              <Heart />
+            <img className='m-5 max-h-[512px] object-cover rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer' src={getImage(11)} onClick={() => handleImageClick(getImage(11))}/>
+            <div 
+              onClick={() => setShowSorry(true)}
+              className='flex flex-row gap-3 animate-bounce cursor-pointer'>
+              <Heart onclick={() => setShowSorry(true)}/>
+              <Heart onclick={() => setShowSorry(true)}/>
+              <Heart onclick={() => setShowSorry(true)}/>
             </div>
           </div>
           </div>
+          <Sorry className={`${showSorry ? '' : 'invisible'}`}/>
           {/* Image Popup */}
           {popupImage && (
             <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50' onClick={handleClosePopup}>
