@@ -273,7 +273,9 @@ function App() {
             </div>
           </div>
           </div>
-          <Sorry className={`${showSorry ? '' : 'invisible'}`}/>
+          {
+            showSorry ? <Sorry/> : ''
+          }
           {/* Image Popup */}
           {popupImage && (
             <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50' onClick={handleClosePopup}>
